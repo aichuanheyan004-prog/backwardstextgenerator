@@ -2,7 +2,7 @@
 
 Static Vite + React + TypeScript site for `backwardstextgenerator.net`.
 
-The tool runs entirely in the visitor's browser. It supports reverse characters, reverse each word, reverse word order, upside-down Unicode, and limited mirror-like Unicode output. Indexed content is present in the HTML pages, while React hydrates the interactive tool.
+The tool runs entirely in the visitor's browser. It supports reverse characters, reverse each word, reverse word order, copyable upside-down and mirror-like Unicode, exact geometric upside-down and mirror previews, and local PNG export. Indexed content is present in the HTML pages, while React hydrates the interactive tool.
 
 ## Commands
 

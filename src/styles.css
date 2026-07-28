@@ -322,6 +322,41 @@ textarea[readonly] {
   background: #f8faf7;
 }
 
+.visual-output {
+  width: 100%;
+  min-height: 260px;
+  max-height: 58vh;
+  overflow: auto;
+  border: 1px solid #cdd6d0;
+  border-radius: 8px;
+  padding: 14px;
+  color: var(--ink);
+  background: #f8faf7;
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", ui-monospace, monospace;
+  font-size: 0.98rem;
+}
+
+.visual-content {
+  display: block;
+  width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  transform-origin: center center;
+}
+
+.visual-output.upside-down-visual .visual-content {
+  transform: rotate(180deg);
+}
+
+.visual-output.mirror-visual .visual-content {
+  transform: scaleX(-1);
+}
+
+.visual-placeholder {
+  color: #7b8581;
+}
+
 .count {
   color: var(--muted);
   font-size: 0.9rem;
@@ -552,7 +587,8 @@ code {
     width: 100%;
   }
 
-  textarea {
+  textarea,
+  .visual-output {
     min-height: 220px;
   }
 }

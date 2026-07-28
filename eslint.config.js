@@ -23,6 +23,9 @@ export default [
         ClipboardItem: "readonly",
         setTimeout: "readonly",
         clearTimeout: "readonly",
+        Blob: "readonly",
+        CanvasRenderingContext2D: "readonly",
+        HTMLDivElement: "readonly",
         HTMLTextAreaElement: "readonly",
         Intl: "readonly",
         URL: "readonly"

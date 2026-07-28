@@ -64,4 +64,30 @@ describe("ToolApp", () => {
       "Clipboard permission was unavailable"
     );
   });
+
+  it("renders exact mirror geometry separately from copyable plain text", async () => {
+    const user = userEvent.setup();
+    const clipboardSpy = vi
+      .spyOn(navigator.clipboard, "writeText")
+      .mockResolvedValue(undefined);
+
+    render(<ToolApp />);
+
+    await user.click(screen.getByText("Exact mirror preview"));
+    await user.type(screen.getByLabelText("Input"), "Room 204!");
+
+    const preview = screen.getByTestId("visual-output");
+    expect(preview).toHaveClass("mirror-visual");
+    expect(preview).toHaveTextContent("Room 204!");
+    expect(screen.queryByTestId("output-text")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Download PNG" })
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Copy text" }));
+    expect(clipboardSpy).toHaveBeenCalledWith("Room 204!");
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "Clipboard text cannot retain a geometric flip"
+    );
+  });
 });

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import {
   Clipboard,
   Copy,
+  Download,
   Eraser,
   RefreshCcw,
   Repeat2,
@@ -12,9 +13,14 @@ import {
   TransformMode,
   countGraphemes,
   getSegmenterSupport,
+  isVisualMode,
   modeLabels,
   transformText
 } from "./lib/textTransforms";
+import {
+  VISUAL_EXPORT_MAX_GRAPHEMES,
+  downloadVisualPng
+} from "./lib/visualExport";
 
 type ToolAppProps = {
   defaultMode?: TransformMode;
@@ -25,7 +31,9 @@ const examples: Record<TransformMode, string> = {
   "reverse-each-word": "Reverse every word, but keep this sentence order.",
   "reverse-word-order": "One small sentence can become a different order.",
   "upside-down": "Hello from 2026!",
-  mirror: "Mirror text for short playful messages."
+  "upside-down-visual": "Exact 180-degree flip: Room 204!",
+  mirror: "Mirror text for short playful messages.",
+  "mirror-visual": "Exact mirror: Room 204!"
 };
 
 const modeHelp: Record<TransformMode, string> = {
@@ -37,8 +45,12 @@ const modeHelp: Record<TransformMode, string> = {
     "Moves the words into the opposite order while keeping punctuation and spacing positions readable.",
   "upside-down":
     "Uses Unicode look-alikes for letters, then reverses order. ASCII digits stay readable because Unicode has no reliable upside-down numeral set.",
+  "upside-down-visual":
+    "Rotates rendered glyphs 180 degrees, so letters, digits, punctuation, and emoji flip exactly. Download PNG to keep the visual effect.",
   mirror:
-    "Uses limited Unicode look-alikes to approximate mirrored text. Unsupported characters stay unchanged."
+    "Uses limited Unicode look-alikes to approximate mirrored text. It stays copyable, but it is not a geometrically exact reflection.",
+  "mirror-visual":
+    "Reflects rendered glyphs horizontally, so letters, digits, punctuation, and emoji mirror exactly. Download PNG to keep the visual effect."
 };
 
 const normalizeMode = (value: string | null): TransformMode => {
@@ -47,7 +59,9 @@ const normalizeMode = (value: string | null): TransformMode => {
     "reverse-each-word",
     "reverse-word-order",
     "upside-down",
-    "mirror"
+    "upside-down-visual",
+    "mirror",
+    "mirror-visual"
   ];
 
   return modes.includes(value as TransformMode)
@@ -66,9 +80,11 @@ export const ToolApp = ({ defaultMode = "reverse-characters" }: ToolAppProps) =>
     "Paste text to generate a backwards version."
   );
   const outputRef = useRef<HTMLTextAreaElement | null>(null);
+  const visualOutputRef = useRef<HTMLDivElement | null>(null);
 
   const support = useMemo(() => getSegmenterSupport(), []);
   const isTooLong = input.length > MAX_INPUT_LENGTH;
+  const isVisual = isVisualMode(mode);
   const inputCount = useMemo(() => countGraphemes(input), [input]);
   const outputCount = useMemo(() => countGraphemes(output), [output]);
 
@@ -89,7 +105,11 @@ export const ToolApp = ({ defaultMode = "reverse-characters" }: ToolAppProps) =>
 
     const nextOutput = transformText(nextInput, nextMode);
     setOutput(nextOutput);
-    setStatus(`${modeLabels[nextMode]} complete. Output is ready to copy.`);
+    setStatus(
+      isVisualMode(nextMode)
+        ? `${modeLabels[nextMode]} complete. Download PNG to keep the exact geometry.`
+        : `${modeLabels[nextMode]} complete. Output is ready to copy.`
+    );
   }, [input, mode]);
 
   useEffect(() => {
@@ -136,11 +156,48 @@ export const ToolApp = ({ defaultMode = "reverse-characters" }: ToolAppProps) =>
 
     try {
       await navigator.clipboard.writeText(output);
-      setStatus("Copied to clipboard.");
+      setStatus(
+        isVisual
+          ? "Copied plain text. Clipboard text cannot retain a geometric flip; use Download PNG for the exact effect."
+          : "Copied to clipboard."
+      );
     } catch {
-      outputRef.current?.focus();
-      outputRef.current?.select();
-      setStatus("Clipboard permission was unavailable. Output is selected.");
+      if (isVisual) {
+        setStatus(
+          "Clipboard permission was unavailable. Download PNG to keep the exact visual effect."
+        );
+      } else {
+        outputRef.current?.focus();
+        outputRef.current?.select();
+        setStatus("Clipboard permission was unavailable. Output is selected.");
+      }
+    }
+  };
+
+  const downloadPng = async () => {
+    if (!output || !isVisualMode(mode)) {
+      setStatus("Choose an exact visual mode and add text before downloading.");
+      return;
+    }
+
+    if (outputCount > VISUAL_EXPORT_MAX_GRAPHEMES) {
+      setStatus(
+        `PNG export is limited to ${VISUAL_EXPORT_MAX_GRAPHEMES.toLocaleString()} graphemes. The on-screen preview still works.`
+      );
+      return;
+    }
+
+    const font = visualOutputRef.current
+      ? window.getComputedStyle(visualOutputRef.current).font
+      : '24px "SFMono-Regular", Consolas, monospace';
+
+    try {
+      await downloadVisualPng(output, mode, font);
+      setStatus("PNG downloaded with the exact visual transform.");
+    } catch {
+      setStatus(
+        "This browser could not create the PNG. Shorten text with many line breaks or use the on-screen preview."
+      );
     }
   };
 
@@ -197,20 +254,44 @@ export const ToolApp = ({ defaultMode = "reverse-characters" }: ToolAppProps) =>
           </span>
         </label>
 
-        <label className="text-panel output-panel" htmlFor={outputId}>
-          <span className="panel-label">Output</span>
-          <textarea
-            id={outputId}
-            data-testid="output-text"
-            aria-label="Output"
-            ref={outputRef}
-            value={output}
-            placeholder="Your converted text will appear here."
-            readOnly
-            spellCheck="false"
-          />
+        <div className="text-panel output-panel">
+          <span id={`${outputId}-label`} className="panel-label">
+            {isVisual ? "Exact visual preview" : "Output"}
+          </span>
+          {isVisual ? (
+            <div
+              id={outputId}
+              ref={visualOutputRef}
+              data-testid="visual-output"
+              className={`visual-output ${mode}`}
+              role="img"
+              aria-labelledby={`${outputId}-label`}
+              aria-description="The geometric transform is preserved in the downloadable PNG, not in copied plain text."
+            >
+              {output ? (
+                <span className="visual-content" aria-hidden="true">
+                  {output}
+                </span>
+              ) : (
+                <span className="visual-placeholder">
+                  Your exact visual preview will appear here.
+                </span>
+              )}
+            </div>
+          ) : (
+            <textarea
+              id={outputId}
+              data-testid="output-text"
+              aria-label="Output"
+              ref={outputRef}
+              value={output}
+              placeholder="Your converted text will appear here."
+              readOnly
+              spellCheck="false"
+            />
+          )}
           <span className="count">{outputCount.toLocaleString()} graphemes</span>
-        </label>
+        </div>
       </div>
 
       <div className="actions" aria-label="Tool actions">
@@ -220,12 +301,20 @@ export const ToolApp = ({ defaultMode = "reverse-characters" }: ToolAppProps) =>
         </button>
         <button type="button" onClick={copyOutput}>
           <Copy aria-hidden="true" />
-          Copy
+          {isVisual ? "Copy text" : "Copy"}
         </button>
-        <button type="button" onClick={swapOutputToInput}>
-          <Repeat2 aria-hidden="true" />
-          Swap
-        </button>
+        {isVisual && (
+          <button type="button" onClick={downloadPng}>
+            <Download aria-hidden="true" />
+            Download PNG
+          </button>
+        )}
+        {!isVisual && (
+          <button type="button" onClick={swapOutputToInput}>
+            <Repeat2 aria-hidden="true" />
+            Swap
+          </button>
+        )}
         <button type="button" onClick={loadExample}>
           <Sparkles aria-hidden="true" />
           Example
@@ -245,6 +334,8 @@ export const ToolApp = ({ defaultMode = "reverse-characters" }: ToolAppProps) =>
         Grapheme support: {support.grapheme ? "Intl.Segmenter" : "fallback"}.
         Word support: {support.word ? "Intl.Segmenter" : "fallback"}. Text stays
         in this browser and is not uploaded by this site.
+        {isVisual &&
+          ` PNG export supports up to ${VISUAL_EXPORT_MAX_GRAPHEMES.toLocaleString()} graphemes.`}
       </p>
     </section>
   );

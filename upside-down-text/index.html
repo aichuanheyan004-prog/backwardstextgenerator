@@ -6,7 +6,7 @@
     <title>Upside Down Text Generator - Copy and Paste Flip Text</title>
     <meta
       name="description"
-      content="Create upside-down Unicode text in your browser, copy it, and learn why flipped text has character and font limits."
+      content="Create copyable upside-down Unicode or an exact 180-degree text preview with local PNG export in your browser."
     />
     <link
       rel="canonical"
@@ -17,7 +17,7 @@
     <meta property="og:title" content="Upside Down Text Generator" />
     <meta
       property="og:description"
-      content="Flip text with Unicode look-alike characters and copy the result. Runs locally in your browser."
+      content="Use copyable Unicode look-alikes or an exact 180-degree visual flip with local PNG export."
     />
     <meta
       property="og:url"
@@ -31,7 +31,7 @@
     <meta name="twitter:title" content="Upside Down Text Generator" />
     <meta
       name="twitter:description"
-      content="Create copy/paste upside-down Unicode text locally in your browser."
+      content="Create copyable Unicode or an exact upside-down PNG locally in your browser."
     />
     <meta
       name="twitter:image"
@@ -46,9 +46,11 @@
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Any",
         "isAccessibleForFree": true,
-        "description": "A local-browser utility that converts text into upside-down Unicode look-alike characters where supported.",
+        "description": "A local-browser utility for copyable upside-down Unicode and exact 180-degree visual text with PNG export.",
         "featureList": [
           "Upside-down Unicode text",
+          "Exact 180-degree visual preview",
+          "Local PNG export",
           "Copy converted text",
           "Clear limitation notes",
           "No account or upload"
@@ -84,17 +86,16 @@
           <p class="eyebrow">Unicode flip text</p>
           <h1>Upside Down Text Generator</h1>
           <p class="lede">
-            Turn text into a copy/paste upside-down style using Unicode
-            look-alike characters. It works best for short Latin-letter messages
-            and common punctuation; ASCII digits remain readable.
+            Choose copyable Unicode look-alikes or an exact 180-degree visual
+            flip. The exact preview rotates every rendered letter, digit,
+            punctuation mark, and emoji and can be downloaded as PNG.
           </p>
         </div>
         <aside class="privacy-chip" aria-label="Limit summary">
-          <strong>Not a true font flip</strong>
+          <strong>Text and geometry are different</strong>
           <span>
-            Unsupported letters, emoji, and many non-Latin scripts stay
-            unchanged because Unicode has no perfect upside-down pair for every
-            character.
+            Unicode output is approximate and copyable. Exact visual output is
+            geometric and must be saved as an image to keep the effect.
           </span>
         </aside>
       </section>
@@ -107,13 +108,14 @@
 
       <section class="content-band">
         <div class="section-inner">
-          <h2>How upside-down text works</h2>
+          <h2>Copyable Unicode versus an exact flip</h2>
           <p>
-            The tool reverses the order of the grapheme clusters and swaps each
-            supported character for a Unicode look-alike. For example,
-            <code>Hello 123!</code> becomes similar to
-            <code>¡321 ollǝH</code>. This is a text substitution, not an image,
-            CSS transform, or downloadable font.
+            Upside-down Unicode reverses grapheme clusters and substitutes
+            supported letters, so <code>Hello 123!</code> becomes similar to
+            <code>¡321 ollǝH</code>. Exact upside-down preview instead rotates
+            the rendered original by 180 degrees. That geometric path is
+            reliable for digits and other glyphs because it does not depend on
+            finding a look-alike Unicode character.
           </p>
         </div>
       </section>
@@ -135,11 +137,11 @@
               </tr>
               <tr>
                 <td>Numbers and punctuation</td>
-                <td>ASCII digits stay recognizable and reverse with the text; punctuation uses substitutes where available.</td>
+                <td>Unicode mode keeps digits readable; exact visual mode rotates their actual rendered shapes.</td>
               </tr>
               <tr>
                 <td>Emoji and flags</td>
-                <td>Kept as grapheme clusters where browser support allows, but not flipped.</td>
+                <td>Unicode mode keeps them intact but unchanged; exact visual mode rotates or reflects them with the rest of the preview.</td>
               </tr>
               <tr>
                 <td>Non-Latin scripts</td>
@@ -148,6 +150,10 @@
               <tr>
                 <td>Receiving app fonts</td>
                 <td>Some apps may show boxes if their font lacks the symbol.</td>
+              </tr>
+              <tr>
+                <td>Copy and download</td>
+                <td>Plain-text copy cannot retain geometry. Download PNG preserves the exact visual transform for inputs up to 10,000 graphemes.</td>
               </tr>
             </tbody>
           </table>

@@ -5,7 +5,11 @@ export type TransformMode =
   | "reverse-each-word"
   | "reverse-word-order"
   | "upside-down"
-  | "mirror";
+  | "upside-down-visual"
+  | "mirror"
+  | "mirror-visual";
+
+export type VisualTransformMode = "upside-down-visual" | "mirror-visual";
 
 export type SegmenterSupport = {
   grapheme: boolean;
@@ -17,8 +21,13 @@ export const modeLabels: Record<TransformMode, string> = {
   "reverse-each-word": "Reverse each word",
   "reverse-word-order": "Reverse word order",
   "upside-down": "Upside-down Unicode",
-  mirror: "Limited mirror text"
+  "upside-down-visual": "Exact upside-down preview",
+  mirror: "Mirror Unicode (approx.)",
+  "mirror-visual": "Exact mirror preview"
 };
+
+export const isVisualMode = (mode: TransformMode): mode is VisualTransformMode =>
+  mode === "upside-down-visual" || mode === "mirror-visual";
 
 type SegmentPart = {
   value: string;
@@ -288,8 +297,12 @@ export const transformText = (text: string, mode: TransformMode): string => {
       return reverseWordOrder(text);
     case "upside-down":
       return upsideDownText(text);
+    case "upside-down-visual":
+      return text;
     case "mirror":
       return mirrorText(text);
+    case "mirror-visual":
+      return text;
   }
 };
 

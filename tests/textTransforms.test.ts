@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   countGraphemes,
+  isVisualMode,
   mirrorText,
   reverseCharacters,
   reverseEachWord,
@@ -53,5 +54,13 @@ describe("text transform logic", () => {
 
   it("creates limited mirror text for mapped characters", () => {
     expect(mirrorText("bad")).toBe("bɒd");
+  });
+
+  it("keeps source text intact for exact geometric preview modes", () => {
+    expect(transformText("Room 204!", "upside-down-visual")).toBe("Room 204!");
+    expect(transformText("Room 204!", "mirror-visual")).toBe("Room 204!");
+    expect(isVisualMode("upside-down-visual")).toBe(true);
+    expect(isVisualMode("mirror-visual")).toBe(true);
+    expect(isVisualMode("mirror")).toBe(false);
   });
 });

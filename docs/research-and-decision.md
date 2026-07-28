@@ -23,9 +23,9 @@ Uncertainty: Google SERPs are personalized and volatile even with US/language pa
 
 Verdict: build.
 
-Primary user task: US English users need to paste text and instantly get a reversed, word-reordered, or Unicode-flipped version they can copy without signing in.
+Primary user task: US English users need to paste text and instantly get a reversed, word-reordered, copyable Unicode-styled, or geometrically flipped result without signing in.
 
-Lowest-cost useful product: a static local-browser text transformer with grapheme-aware reversal, clear mode labels, copy/clear/example/swap actions, a complete guide, privacy/terms pages, sitemap, robots, and structured data.
+Lowest-cost useful product: a static local-browser text transformer with grapheme-aware reversal, clearly separated copyable Unicode and exact visual modes, local PNG export, copy/clear/example/swap actions, a complete guide, privacy/terms pages, sitemap, robots, and structured data.
 
 Page plan:
 
