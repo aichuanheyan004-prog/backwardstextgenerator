@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Backwards Text Generator favicon</title>
+  <desc id="desc">A rounded square mark with reversed text arrows.</desc>
+  <rect width="64" height="64" rx="12" fill="#0f766e"/>
+  <path d="M15 20h24l-6-6 4-4 13 13-13 13-4-4 6-6H15z" fill="#ffffff"/>
+  <path d="M49 44H25l6 6-4 4-13-13 13-13 4 4-6 6h24z" fill="#f6d06f"/>
+</svg>

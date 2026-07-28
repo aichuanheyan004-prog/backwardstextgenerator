@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upside Down Text Generator - Copy and Paste Flip Text</title>
+    <meta
+      name="description"
+      content="Create upside-down Unicode text in your browser, copy it, and learn why flipped text has character and font limits."
+    />
+    <link
+      rel="canonical"
+      href="https://www.backwardstextgenerator.net/upside-down-text/"
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Upside Down Text Generator" />
+    <meta
+      property="og:description"
+      content="Flip text with Unicode look-alike characters and copy the result. Runs locally in your browser."
+    />
+    <meta
+      property="og:url"
+      content="https://www.backwardstextgenerator.net/upside-down-text/"
+    />
+    <meta
+      property="og:image"
+      content="https://www.backwardstextgenerator.net/og-image.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Upside Down Text Generator" />
+    <meta
+      name="twitter:description"
+      content="Create copy/paste upside-down Unicode text locally in your browser."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.backwardstextgenerator.net/og-image.png"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "Upside Down Text Generator",
+        "url": "https://www.backwardstextgenerator.net/upside-down-text/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "isAccessibleForFree": true,
+        "description": "A local-browser utility that converts text into upside-down Unicode look-alike characters where supported.",
+        "featureList": [
+          "Upside-down Unicode text",
+          "Copy converted text",
+          "Clear limitation notes",
+          "No account or upload"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "privacyPolicy": "https://www.backwardstextgenerator.net/privacy/",
+        "termsOfService": "https://www.backwardstextgenerator.net/terms/"
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">Bt</span>
+          <span>Backwards Text Generator</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Tool</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">Unicode flip text</p>
+          <h1>Upside Down Text Generator</h1>
+          <p class="lede">
+            Turn text into a copy/paste upside-down style using Unicode
+            look-alike characters. It works best for short Latin-letter messages,
+            digits, and common punctuation.
+          </p>
+        </div>
+        <aside class="privacy-chip" aria-label="Limit summary">
+          <strong>Not a true font flip</strong>
+          <span>
+            Unsupported letters, emoji, and many non-Latin scripts stay
+            unchanged because Unicode has no perfect upside-down pair for every
+            character.
+          </span>
+        </aside>
+      </section>
+
+      <div id="tool-root" data-mode="upside-down"></div>
+      <noscript>
+        This upside-down text generator needs JavaScript because the conversion
+        runs locally in your browser.
+      </noscript>
+
+      <section class="content-band">
+        <div class="section-inner">
+          <h2>How upside-down text works</h2>
+          <p>
+            The tool reverses the order of the grapheme clusters and swaps each
+            supported character for a Unicode look-alike. For example,
+            <code>Hello 123!</code> becomes similar to
+            <code>¡Ɛᄅ⇂ ollǝH</code>. This is a text substitution, not an image,
+            CSS transform, or downloadable font.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-inner">
+          <h2>Known limitations</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Input type</th>
+                <th>Expected behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Basic Latin letters</td>
+                <td>Most common letters have a readable substitute.</td>
+              </tr>
+              <tr>
+                <td>Numbers and punctuation</td>
+                <td>Some have substitutes, while others remain unchanged.</td>
+              </tr>
+              <tr>
+                <td>Emoji and flags</td>
+                <td>Kept as grapheme clusters where browser support allows, but not flipped.</td>
+              </tr>
+              <tr>
+                <td>Non-Latin scripts</td>
+                <td>Usually unchanged unless a specific look-alike is mapped.</td>
+              </tr>
+              <tr>
+                <td>Receiving app fonts</td>
+                <td>Some apps may show boxes if their font lacks the symbol.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            For plain backwards text without Unicode substitutions, use the
+            <a href="/">main backwards text generator</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2026 Backwards Text Generator</span>
+        <nav aria-label="Footer navigation">
+          <a href="/">Tool</a>
+          <a href="/guide/">Guide</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </nav>
+      </div>
+    </footer>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

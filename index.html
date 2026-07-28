@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backwards Text Generator - Reverse Text Online</title>
+    <meta
+      name="description"
+      content="Reverse text, words, word order, upside-down Unicode, or limited mirror text in your browser. Copy the result without an account or upload."
+    />
+    <link rel="canonical" href="https://www.backwardstextgenerator.net/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Backwards Text Generator" />
+    <meta
+      property="og:description"
+      content="Paste text and reverse it locally in your browser. Supports characters, words, word order, upside-down Unicode, and limited mirror text."
+    />
+    <meta property="og:url" content="https://www.backwardstextgenerator.net/" />
+    <meta
+      property="og:image"
+      content="https://www.backwardstextgenerator.net/og-image.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Backwards Text Generator" />
+    <meta
+      name="twitter:description"
+      content="Reverse text locally in your browser, then copy the output."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.backwardstextgenerator.net/og-image.png"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": ["WebApplication", "SoftwareApplication"],
+        "name": "Backwards Text Generator",
+        "url": "https://www.backwardstextgenerator.net/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "isAccessibleForFree": true,
+        "description": "A browser-local text utility for reversing text, reversing words, changing word order, and creating limited Unicode upside-down or mirror-like text.",
+        "featureList": [
+          "Reverse characters by grapheme clusters",
+          "Reverse each word",
+          "Reverse word order",
+          "Upside-down Unicode text",
+          "Limited mirror-like Unicode text",
+          "Copy converted text"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "privacyPolicy": "https://www.backwardstextgenerator.net/privacy/",
+        "termsOfService": "https://www.backwardstextgenerator.net/terms/"
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">Bt</span>
+          <span>Backwards Text Generator</span>
+        </a>
+        <div class="nav-links">
+          <a href="/guide/">Guide</a>
+          <a href="/upside-down-text/">Upside-down text</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">Reverse text online</p>
+          <h1>Backwards Text Generator</h1>
+          <p class="lede">
+            Paste text, choose the kind of reversal you need, and copy the
+            output. The conversion runs locally in this browser; this site does
+            not upload your text, create an account, or set analytics cookies.
+          </p>
+        </div>
+        <aside class="privacy-chip" aria-label="Privacy summary">
+          <strong>No upload required</strong>
+          <span>
+            The tool uses browser JavaScript. Clipboard access happens only
+            when you press Copy.
+          </span>
+        </aside>
+      </section>
+
+      <div id="tool-root" data-mode="reverse-characters"></div>
+      <noscript>
+        This text generator needs JavaScript because the conversion is designed
+        to run locally in your browser.
+      </noscript>
+
+      <section class="content-band">
+        <div class="section-inner">
+          <h2>Which backwards mode should you use?</h2>
+          <div class="list-grid">
+            <article class="mini-card">
+              <h3>Reverse characters</h3>
+              <p>
+                Best for making a full message read backwards, including spaces
+                and line breaks.
+              </p>
+            </article>
+            <article class="mini-card">
+              <h3>Reverse each word</h3>
+              <p>
+                Keeps the sentence order, but turns every word around, such as
+                <code>hello world</code> into <code>olleh dlrow</code>.
+              </p>
+            </article>
+            <article class="mini-card">
+              <h3>Reverse word order</h3>
+              <p>
+                Moves the words into the opposite order while leaving punctuation
+                positions readable.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-inner two-column">
+          <div>
+            <h2>Unicode, emoji, and line breaks</h2>
+            <p>
+              Modern browsers can use <code>Intl.Segmenter</code> to avoid
+              splitting many emoji, flags, skin-tone modifiers, and letters with
+              combining marks. When that API is unavailable, the fallback still
+              preserves surrogate-pair emoji but may not keep every combining
+              sequence intact.
+            </p>
+          </div>
+          <div>
+            <h2>Upside-down and mirror text</h2>
+            <p>
+              Unicode flip modes use look-alike characters, not a true font or
+              image transform. Some letters have no convincing equivalent, so
+              unsupported characters remain unchanged. For a deeper explanation,
+              use the <a href="/upside-down-text/">upside-down text page</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-inner">
+          <h2>How to reverse text</h2>
+          <ol>
+            <li>Paste or type your text in the input box.</li>
+            <li>
+              Choose Reverse characters, Reverse each word, Reverse word order,
+              Upside-down Unicode, or Limited mirror text.
+            </li>
+            <li>Leave Live update on, or press Convert when you are ready.</li>
+            <li>Use Copy, Swap, Example, or Clear for the next step.</li>
+          </ol>
+          <p>
+            The <a href="/guide/">full guide</a> compares the modes with
+            examples and explains why visually flipped Unicode has limits.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2026 Backwards Text Generator</span>
+        <nav aria-label="Footer navigation">
+          <a href="/guide/">Guide</a>
+          <a href="/upside-down-text/">Upside-down text</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </nav>
+      </div>
+    </footer>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

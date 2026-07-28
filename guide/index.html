@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to Reverse Text, Words, and Word Order</title>
+    <meta
+      name="description"
+      content="Learn the difference between reverse characters, reverse each word, reverse word order, upside-down Unicode, and mirror-like text."
+    />
+    <link rel="canonical" href="https://www.backwardstextgenerator.net/guide/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to Reverse Text, Words, and Word Order" />
+    <meta
+      property="og:description"
+      content="A practical guide to backwards text modes, Unicode limits, emoji handling, and copy/paste troubleshooting."
+    />
+    <meta property="og:url" content="https://www.backwardstextgenerator.net/guide/" />
+    <meta
+      property="og:image"
+      content="https://www.backwardstextgenerator.net/og-image.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How to Reverse Text, Words, and Word Order" />
+    <meta
+      name="twitter:description"
+      content="Choose the right backwards text mode and understand Unicode limits."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.backwardstextgenerator.net/og-image.png"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "How to Reverse Text, Words, and Word Order",
+        "description": "A guide to text reversal modes, Unicode limitations, and browser-local copy/paste behavior.",
+        "datePublished": "2026-07-28",
+        "dateModified": "2026-07-28",
+        "mainEntityOfPage": "https://www.backwardstextgenerator.net/guide/"
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">Bt</span>
+          <span>Backwards Text Generator</span>
+        </a>
+        <div class="nav-links">
+          <a href="/">Tool</a>
+          <a href="/upside-down-text/">Upside-down text</a>
+          <a href="/privacy/">Privacy</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="intro compact">
+        <p class="eyebrow">Guide</p>
+        <h1>How to reverse text, words, and word order</h1>
+        <p class="lede">
+          Backwards text can mean several different things. This guide shows
+          what each mode changes, when to use it, and what to expect with
+          Unicode, emoji, punctuation, and line breaks.
+        </p>
+      </section>
+
+      <section class="content-band">
+        <div class="section-inner">
+          <h2>Quick comparison</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Mode</th>
+                <th>Example input</th>
+                <th>Example output</th>
+                <th>Use it when</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Reverse characters</td>
+                <td><code>Hello world!</code></td>
+                <td><code>!dlrow olleH</code></td>
+                <td>You want the whole message backwards.</td>
+              </tr>
+              <tr>
+                <td>Reverse each word</td>
+                <td><code>Hello world!</code></td>
+                <td><code>olleH dlrow!</code></td>
+                <td>You want each word flipped but the sentence order kept.</td>
+              </tr>
+              <tr>
+                <td>Reverse word order</td>
+                <td><code>One two three.</code></td>
+                <td><code>three two One.</code></td>
+                <td>You want the words moved into the opposite order.</td>
+              </tr>
+              <tr>
+                <td>Upside-down Unicode</td>
+                <td><code>Hello 123!</code></td>
+                <td><code>¡Ɛᄅ⇂ ollǝH</code></td>
+                <td>You want a playful copy/paste style that appears flipped.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-inner two-column">
+          <div>
+            <h2>Why grapheme clusters matter</h2>
+            <p>
+              A visible character is not always one JavaScript code unit. A flag
+              emoji, a family emoji, or a letter plus a combining accent can be
+              made of several code points. This tool uses browser grapheme
+              segmentation when available so common clusters stay together
+              during reversal.
+            </p>
+          </div>
+          <div>
+            <h2>What the fallback does</h2>
+            <p>
+              If a browser does not support modern segmentation, the fallback
+              reverses by Unicode code point. That still avoids splitting many
+              emoji surrogate pairs, but some combining marks may move
+              separately. The status note in the tool tells you which path your
+              browser is using.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-inner">
+          <h2>Try the modes in the tool</h2>
+          <div id="tool-root" data-mode="reverse-word-order"></div>
+          <noscript>
+            This guide includes an interactive tool that needs JavaScript to run
+            locally in your browser.
+          </noscript>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <div class="section-inner">
+          <h2>Troubleshooting copy and paste</h2>
+          <ul>
+            <li>
+              Clipboard copying requires a secure browser context. On the live
+              HTTPS site, press Copy after generating output.
+            </li>
+            <li>
+              If clipboard permission is unavailable, the output box is selected
+              so you can use your normal keyboard shortcut.
+            </li>
+            <li>
+              Some apps normalize Unicode or use fonts that do not include every
+              upside-down or mirror-like character. If a symbol shows as a box,
+              the receiving app or font does not support it.
+            </li>
+            <li>
+              For very large text, keep the input under the displayed safety
+              limit. The tool is browser-local, so performance depends on the
+              device.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2026 Backwards Text Generator</span>
+        <nav aria-label="Footer navigation">
+          <a href="/">Tool</a>
+          <a href="/upside-down-text/">Upside-down text</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </nav>
+      </div>
+    </footer>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
