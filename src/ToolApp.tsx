@@ -36,7 +36,7 @@ const modeHelp: Record<TransformMode, string> = {
   "reverse-word-order":
     "Moves the words into the opposite order while keeping punctuation and spacing positions readable.",
   "upside-down":
-    "Uses Unicode look-alike characters and reverses order so the result appears flipped where supported.",
+    "Uses Unicode look-alikes for letters, then reverses order. ASCII digits stay readable because Unicode has no reliable upside-down numeral set.",
   mirror:
     "Uses limited Unicode look-alikes to approximate mirrored text. Unsupported characters stay unchanged."
 };

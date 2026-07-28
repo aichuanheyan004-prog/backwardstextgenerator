@@ -85,8 +85,8 @@
           <h1>Upside Down Text Generator</h1>
           <p class="lede">
             Turn text into a copy/paste upside-down style using Unicode
-            look-alike characters. It works best for short Latin-letter messages,
-            digits, and common punctuation.
+            look-alike characters. It works best for short Latin-letter messages
+            and common punctuation; ASCII digits remain readable.
           </p>
         </div>
         <aside class="privacy-chip" aria-label="Limit summary">
@@ -112,7 +112,7 @@
             The tool reverses the order of the grapheme clusters and swaps each
             supported character for a Unicode look-alike. For example,
             <code>Hello 123!</code> becomes similar to
-            <code>¡Ɛᄅ⇂ ollǝH</code>. This is a text substitution, not an image,
+            <code>¡321 ollǝH</code>. This is a text substitution, not an image,
             CSS transform, or downloadable font.
           </p>
         </div>
@@ -135,7 +135,7 @@
               </tr>
               <tr>
                 <td>Numbers and punctuation</td>
-                <td>Some have substitutes, while others remain unchanged.</td>
+                <td>ASCII digits stay recognizable and reverse with the text; punctuation uses substitutes where available.</td>
               </tr>
               <tr>
                 <td>Emoji and flags</td>

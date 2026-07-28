@@ -44,7 +44,11 @@ describe("text transform logic", () => {
   });
 
   it("creates upside-down Unicode for mapped characters and leaves spaces intact", () => {
-    expect(upsideDownText("hello 123!")).toBe("¡Ɛᄅ⇂ ollǝɥ");
+    expect(upsideDownText("hello 123!")).toBe("¡321 ollǝɥ");
+  });
+
+  it("keeps every ASCII digit readable while reversing their order", () => {
+    expect(upsideDownText("0123456789")).toBe("9876543210");
   });
 
   it("creates limited mirror text for mapped characters", () => {
